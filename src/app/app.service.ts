@@ -15,9 +15,14 @@ export class AppService {
     return this.http.get<Product[]>(`${this.baseUrl}/cookies`);
   }
 
+  switchSugarFree(checked: boolean) {
+    const queryParam = checked ? '?sugarfree' : ''
+    return this.http.get<Product[]>(`${this.baseUrl}/cookies${queryParam}`)
+  }
+
   confirmOrder(payload: any) {
-    this.http.post<any>(`${this.baseUrl}/cookies-order`, payload).subscribe({
-      next: (response: { message: string, success: 0 | 1 }) => {
+    this.http.post<{ message: string, success: 0 | 1 }>(`${this.baseUrl}/cookies-order`, payload).subscribe({
+      next: (response) => {
         alert(response.message)
       },
       error: ({error}) => {

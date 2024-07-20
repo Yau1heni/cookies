@@ -36,6 +36,11 @@ export class AppComponent implements OnInit {
     }
   }
 
+  switchSugarFree(e: Event) {
+    this.appService.switchSugarFree((e.currentTarget as HTMLInputElement).checked)
+      .subscribe(data => this.productsData = data);
+  }
+
   changeCurrency() {
     let newCurrency = '$'
     let coefficient = 1
