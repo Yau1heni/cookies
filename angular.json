@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "cookies-ng": {
+    "cookies": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -23,7 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/cookies-ng",
+            "outputPath": "dist/cookies",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -31,9 +31,11 @@
             ],
             "tsConfig": "tsconfig.app.json",
             "assets": [
+              "src/assets",
               {
                 "glob": "**/*",
                 "input": "public"
+
               }
             ],
             "styles": [
@@ -46,16 +48,17 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kB",
+                  "maximumWarning": "1MB",
                   "maximumError": "1MB"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kB",
-                  "maximumError": "4kB"
+                  "maximumWarning": "1MB",
+                  "maximumError": "1MB"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "baseHref": "/cookies/"
             },
             "development": {
               "optimization": false,
@@ -69,10 +72,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "cookies-ng:build:production"
+              "buildTarget": "cookies:build:production"
             },
             "development": {
-              "buildTarget": "cookies-ng:build:development"
+              "buildTarget": "cookies:build:development"
             }
           },
           "defaultConfiguration": "development"
