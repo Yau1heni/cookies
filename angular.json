@@ -35,13 +35,13 @@
               {
                 "glob": "**/*",
                 "input": "public"
-
               }
             ],
             "styles": [
               "src/styles.css"
             ],
-            "scripts": ["src/assets/lottie-player.js"]
+            "scripts": ["src/assets/lottie-player.js"],
+            "baseHref": "/cookies/"
           },
           "configurations": {
             "production": {
@@ -92,6 +92,7 @@
             ],
             "tsConfig": "tsconfig.spec.json",
             "assets": [
+              "src/assets",
               {
                 "glob": "**/*",
                 "input": "public"
