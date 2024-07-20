@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
 import {Product} from "./app.model";
 import {AppService} from "./app.service";
@@ -9,7 +9,9 @@ import {AppService} from "./app.service";
   styleUrl: './app.component.css',
 })
 export class AppComponent implements OnInit {
-  currency = '$'
+  currency: string = '$'
+  loader: boolean = true
+  loaderShowed: boolean = true;
 
   productsData: Product[] = [];
 
@@ -19,10 +21,31 @@ export class AppComponent implements OnInit {
     phone: ['', Validators.required],
   })
 
+  mainImageStyle: any
+  orderImageStyle: any
+
+  @HostListener('document:mousemove', ['$event'])
+  onMouseMove(e: MouseEvent) {
+    this.mainImageStyle = {
+      transform: "translate(" + ((e.clientX * 0.3) / 8) + "px," + ((e.clientY * 0.3) / 8) + "px)"
+    };
+    this.orderImageStyle = {
+      transform: "translate(-" + ((e.clientX * 0.3) / 8) + "px,-" + ((e.clientY * 0.3) / 8) + "px)"
+    };
+  }
+
   constructor(private fb: FormBuilder, private appService: AppService) {
   }
 
   ngOnInit() {
+    setTimeout(()=>{
+      this.loaderShowed = false;
+    }, 1000)
+
+    setTimeout(()=>{
+      this.loader = false;
+    }, 1500)
+
     this.appService.getCookies().subscribe(cookies => {
       this.productsData = cookies
     });

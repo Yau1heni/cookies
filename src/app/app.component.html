@@ -35,7 +35,7 @@
           <button (click)="scrollTo(products)" id="main-action-button" class="button">Заказать</button>
         </div>
       </div>
-      <img class="main-image" ngSrc="./assets/images/cookie.png" alt="cookie" height="852" width="909">
+      <img class="main-image" ngSrc="./assets/images/cookie.png" alt="cookie" height="852" width="909" [ngStyle]="mainImageStyle">
     </div>
   </section>
 
@@ -118,7 +118,7 @@
           </div>
         </div>
         <div class="order-block-image">
-          <img ngSrc="./assets/images/order.png" alt="cookies" class="order-image" height="559" width="468">
+          <img ngSrc="./assets/images/order.png" alt="cookies" class="order-image" height="559" width="468" [ngStyle]="orderImageStyle">
         </div>
       </div>
     </div>
@@ -134,3 +134,5 @@
   </footer>
 
 </main>
+
+<app-loader [loader]="loader" [loaderShowed]="loaderShowed"></app-loader>
